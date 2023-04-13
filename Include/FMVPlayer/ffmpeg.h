@@ -2,27 +2,27 @@
 
 extern "C"
 {
-#include "ffmpeg\include\libavcodec\avcodec.h"
-#include "ffmpeg\include\libavfilter\avfilter.h"
-#include "ffmpeg\include\libavformat\avformat.h"
-#include "ffmpeg\include\libavutil\avutil.h"
-#include "ffmpeg\include\libavutil\channel_layout.h"
-#include "ffmpeg\include\libavutil\frame.h"
-#include "ffmpeg\include\libavutil\mem.h"
-#include "ffmpeg\include\libavutil\dict.h"
-#include "ffmpeg\include\libavutil\time.h"
-#include "ffmpeg\include\libswresample\swresample.h"
-#include "ffmpeg\include\libswscale\swscale.h"
-#include "ffmpeg\include\libavutil\imgutils.h"
+#include "libavcodec\avcodec.h"
+#include "libavfilter\avfilter.h"
+#include "libavformat\avformat.h"
+#include "libavutil\avutil.h"
+#include "libavutil\channel_layout.h"
+#include "libavutil\frame.h"
+#include "libavutil\mem.h"
+#include "libavutil\dict.h"
+#include "libavutil\time.h"
+#include "libswresample\swresample.h"
+#include "libswscale\swscale.h"
+#include "libavutil\imgutils.h"
 
 #ifndef FFMPEG_LIBS
 #define FFMPEG_LIBS
-#pragma comment(lib, "bink\\ffmpeg\\lib\\libavcodec.a")
-#pragma comment(lib, "bink\\ffmpeg\\lib\\libavfilter.a")
-#pragma comment(lib, "bink\\ffmpeg\\lib\\libavformat.a")
-#pragma comment(lib, "bink\\ffmpeg\\lib\\libavutil.a")
-#pragma comment(lib, "bink\\ffmpeg\\lib\\libswresample.a")
-#pragma comment(lib, "bink\\ffmpeg\\lib\\libswscale.a")
+#pragma comment(lib, "libavcodec.a")
+#pragma comment(lib, "libavfilter.a")
+#pragma comment(lib, "libavformat.a")
+#pragma comment(lib, "libavutil.a")
+#pragma comment(lib, "libswresample.a")
+#pragma comment(lib, "libswscale.a")
 #endif
 }
 
