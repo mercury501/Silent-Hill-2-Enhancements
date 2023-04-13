@@ -51,6 +51,9 @@
     <ClCompile Include="Include\criware\criware_main.cpp" />
     <ClCompile Include="Include\criware\criware_sound.cpp" />
     <ClCompile Include="Include\criware\criware_xaudio2.cpp" />
+    <ClCompile Include="Include\FMVPlayer\bink.cpp" />
+    <ClCompile Include="Include\FMVPlayer\bink_int.cpp" />
+    <ClCompile Include="Include\FMVPlayer\ffmpeg.cpp" />
     <ClCompile Include="Patches\AlternateStomp.cpp" />
     <ClCompile Include="Patches\ChangeClosetSpawn.cpp" />
     <ClCompile Include="Patches\CommandWindowMouseFix.cpp" />
@@ -174,6 +177,9 @@
     <ClInclude Include="Include\criware\criware_lock.h" />
     <ClInclude Include="Include\criware\criware_sound.h" />
     <ClInclude Include="Include\criware\criware_xaudio2.h" />
+    <ClInclude Include="Include\FMVPlayer\bink.h" />
+    <ClInclude Include="Include\FMVPlayer\bink_int.h" />
+    <ClInclude Include="Include\FMVPlayer\ffmpeg.h" />
     <ClInclude Include="Include\GTA\CFileMgr.h" />
     <ClInclude Include="Include\GTA\WSF.h" />
     <ClInclude Include="Include\stdafx.h" />
@@ -257,7 +263,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir);Include;Resources;%(AdditionalIncludeDirectories);$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include\FMVPlayer\ffmpeg\include;$(SolutionDir);Include;Resources;%(AdditionalIncludeDirectories);$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;WIN32;_DEBUG;_WINDOWS;PSAPI_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(SolutionDir)bin\Intermediate\$(ProjectName)\$(Configuration)\Object\%(RelativeDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -268,7 +274,7 @@
     <Link>
       <ModuleDefinitionFile>Wrappers\wrapper.def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);$(WindowsSDK80Path)Lib\winv6.3\um\x86;$(ProjectDir)Wrappers\d3d8\DirectX81SDK\include</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);$(WindowsSDK80Path)Lib\winv6.3\um\x86;$(ProjectDir)Wrappers\d3d8\DirectX81SDK\include;$(ProjectDir)Include\FMVPlayer\ffmpeg\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>Psapi.lib;Shlwapi.lib;WinInet.lib;libci.lib;legacy_stdio_definitions.lib;d3dx8.lib;d3d8.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
@@ -280,7 +286,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir);Include;Resources;%(AdditionalIncludeDirectories);$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include\FMVPlayer\ffmpeg\include;$(SolutionDir);Include;Resources;%(AdditionalIncludeDirectories);$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;WIN32;NDEBUG;_WINDOWS;PSAPI_VERSION=1;D3D8TO9NOLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(SolutionDir)bin\Intermediate\$(ProjectName)\$(Configuration)\Object\%(RelativeDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -289,7 +295,7 @@
     <Link>
       <ModuleDefinitionFile>Wrappers\wrapper.def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);$(WindowsSDK80Path)Lib\winv6.3\um\x86;$(ProjectDir)Wrappers\d3d8\DirectX81SDK\include</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)Include\FMVPlayer\ffmpeg\lib;$(SolutionDir)bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);$(WindowsSDK80Path)Lib\winv6.3\um\x86;$(ProjectDir)Wrappers\d3d8\DirectX81SDK\include</AdditionalLibraryDirectories>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>

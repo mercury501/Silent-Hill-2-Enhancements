@@ -392,6 +392,15 @@
     <ClCompile Include="Patches\DoubleFootstepFix.cpp">
       <Filter>Patches</Filter>
     </ClCompile>
+    <ClCompile Include="Include\FMVPlayer\bink.cpp">
+      <Filter>Include\FMVPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\FMVPlayer\bink_int.cpp">
+      <Filter>Include\FMVPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\FMVPlayer\ffmpeg.cpp">
+      <Filter>Include\FMVPlayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Settings.h">
@@ -610,6 +619,15 @@
     <ClInclude Include="Patches\SixtyFPSPatch.h">
       <Filter>Patches</Filter>
     </ClInclude>
+    <ClInclude Include="Include\FMVPlayer\bink.h">
+      <Filter>Include\FMVPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FMVPlayer\bink_int.h">
+      <Filter>Include\FMVPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FMVPlayer\ffmpeg.h">
+      <Filter>Include\FMVPlayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\sh2-enhce.rc">
@@ -702,6 +720,9 @@
     </Filter>
     <Filter Include="External\MemoryModule">
       <UniqueIdentifier>{3ce3eff9-8225-4947-963d-ff492c58ebba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\FMVPlayer">
+      <UniqueIdentifier>{86343f61-a8e3-4285-abaf-ae64419e330b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
