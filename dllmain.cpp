@@ -521,6 +521,12 @@ void DelayedStart()
 		PatchFullscreenVideos();
 	}
 
+	// Use Ffmpeg for fmvs
+	if (true) //TODO setting
+	{
+		PatchFMVPlayer();
+	}
+
 	// Patch resolution list in the Options menu
 	if (((DynamicResolution || LockResolution) && WidescreenFix) && CustomExeStrSet)
 	{

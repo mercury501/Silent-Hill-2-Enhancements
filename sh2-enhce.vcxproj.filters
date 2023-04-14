@@ -401,6 +401,9 @@
     <ClCompile Include="Include\FMVPlayer\ffmpeg.cpp">
       <Filter>Include\FMVPlayer</Filter>
     </ClCompile>
+    <ClCompile Include="Patches\FMVPlayer.cpp">
+      <Filter>Patches</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Settings.h">
