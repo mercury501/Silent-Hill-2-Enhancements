@@ -30,6 +30,7 @@ WNDPROC OriginalWndProc = nullptr;
 HWND DeviceWindow = nullptr;
 LONG BufferWidth = 0, BufferHeight = 0;
 DWORD VendorID = 0;
+bool WindowInChange = false;
 bool UsingWindowBorder = true;
 bool CopyRenderTarget = false;
 bool SetSSAA = false;
@@ -348,6 +349,7 @@ void UpdatePresentParameter(D3DPRESENT_PARAMETERS* pPresentationParameters, HWND
 	// Update patches for resolution change
 	UpdateResolutionPatches(BufferWidth, BufferHeight);
 
+	WindowInChange = true;
 	if (IsWindow(DeviceWindow))
 	{
 		// Check if window is minimized and restore it
@@ -420,6 +422,7 @@ void UpdatePresentParameter(D3DPRESENT_PARAMETERS* pPresentationParameters, HWND
 			LastBufferHeight = BufferHeight;
 		}
 	}
+	WindowInChange = false;
 }
 
 void UpdatePresentParameterForMultisample(D3DPRESENT_PARAMETERS* pPresentationParameters, D3DMULTISAMPLE_TYPE MultiSampleType)
@@ -451,9 +454,14 @@ void AdjustWindow(HWND MainhWnd, LONG displayWidth, LONG displayHeight)
 	}
 
 	// Remember first run
-	static bool FristRun = true;
+	static bool FirstRun = true;
 
 	// Set window active and focus
+	if (FirstRun)
+	{
+		ShowWindow(MainhWnd, SW_MINIMIZE);
+		ShowWindow(MainhWnd, SW_RESTORE);
+	}
 	SetWindowPos(MainhWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
 	if (!ForceTopMost)
 	{
@@ -502,7 +510,7 @@ void AdjustWindow(HWND MainhWnd, LONG displayWidth, LONG displayHeight)
 	if (ScreenMode == WINDOWED && screenWidth >= Rect.right && screenHeight >= Rect.bottom)
 	{
 		// Center window on load or if not using window border
-		if (FristRun || !UsingWindowBorder)
+		if (FirstRun || !UsingWindowBorder)
 		{
 			xLoc = (screenWidth - Rect.right) / 2;
 			yLoc = (screenHeight - Rect.bottom) / 2;
@@ -511,7 +519,7 @@ void AdjustWindow(HWND MainhWnd, LONG displayWidth, LONG displayHeight)
 		else
 		{
 			RECT wRect = {};
-			GetWindowRect(MainhWnd,&wRect);
+			GetWindowRect(MainhWnd, &wRect);
 			xLoc = wRect.left;
 			yLoc = wRect.top;
 			if (xLoc + Rect.right > screenWidth && screenWidth >= Rect.right)
@@ -542,7 +550,7 @@ void AdjustWindow(HWND MainhWnd, LONG displayWidth, LONG displayHeight)
 	}
 
 	// Unset frist run
-	FristRun = false;
+	FirstRun = false;
 }
 
 void SaveWindowPlacement()
@@ -595,7 +603,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			SetResolutionList(BufferWidth, BufferHeight);
 		}
 		LastMonitorHandle = MonitorHandle;
-		if (hWnd == DeviceWindow)
+		if (hWnd == DeviceWindow && ScreenMode == WINDOWED && !WindowInChange)
 		{
 			SaveWindowPlacement();
 		}

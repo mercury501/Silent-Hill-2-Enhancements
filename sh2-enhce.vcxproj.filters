@@ -402,6 +402,10 @@
       <Filter>Include\FMVPlayer</Filter>
     </ClCompile>
     <ClCompile Include="Patches\FMVPlayer.cpp">
+    <ClCompile Include="Patches\FinalBossRoomFix.cpp">
+      <Filter>Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="Patches\MasterVolume.cpp">
       <Filter>Patches</Filter>
     </ClCompile>
   </ItemGroup>
@@ -630,6 +634,8 @@
     </ClInclude>
     <ClInclude Include="Include\FMVPlayer\ffmpeg.h">
       <Filter>Include\FMVPlayer</Filter>
+    <ClInclude Include="Patches\MasterVolume.h">
+      <Filter>Patches</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

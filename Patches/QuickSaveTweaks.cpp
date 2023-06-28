@@ -1,5 +1,5 @@
 /**
-* Copyright (C) 2022 The Machine Ambassador, mercury501, Steam006
+* Copyright (C) 2023 The Machine Ambassador, mercury501, Steam006
 *
 * This software is  provided 'as-is', without any express  or implied  warranty. In no event will the
 * authors be held liable for any damages arising from the use of this software.
@@ -175,7 +175,7 @@ void RunQuickSaveTweaks()
 	LOG_ONCE("Patching Quick Save Text Fading Too Quickly...");
 
 	//Currently in-game && a text prompt is NOT currently on-screen
-	if (GetClearTextPointer() && *GetClearTextPointer() == 0x05 && GetEventIndex() == EVENT_IN_GAME && !InputTweaksRef.IsInFullScreenImageEvent())
+	if (GetClearTextPointer() && *GetClearTextPointer() == 0x05 && GetEventIndex() == EVENT_IN_GAME && !IsInFullScreenImageEvent())
 	{
 		UpdateMemoryAddress(GetClearTextPointer(), "\x00", 1);
 	}

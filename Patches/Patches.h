@@ -27,7 +27,6 @@ BYTE GetFlashlightSwitch();
 float GetFlashlightBrightnessRed();
 float GetFlashlightBrightnessGreen();
 float GetFlashlightBrightnessBlue();
-DWORD GetOnScreen();
 BYTE GetEventIndex();
 BYTE GetMenuEvent();
 DWORD GetTransitionState();
@@ -65,7 +64,23 @@ int32_t GetIsWritingQuicksave();
 int32_t GetTextAddr();
 float GetFrametime();
 BYTE GetInputAssignmentFlag();
+BYTE GetQuitSubmenuFlag();
+int32_t GetMemoListIndex();
+int32_t GetMemoListHitbox();
+int16_t GetMemoCountIndex();
+int32_t GetMemoInventory();
+BYTE GetMousePointerVisibleFlag();
+BYTE GetReadingMemoFlag();
 float GetGlobalFadeHoldValue();
+float GetPuzzleCursorHorizontalPos();
+float GetPuzzleCursorVerticalPos();
+BYTE GetPlayerIsDying();
+BYTE GetMariaNpcIsDying();
+int8_t GetOptionsPage();
+int8_t GetOptionsSubPage();
+int32_t GetInternalVerticalRes();
+int32_t GetInternalHorizontalRes();
+int16_t GetSelectedOption();
 
 // Shared pointer function declaration
 DWORD *GetRoomIDPointer();
@@ -81,7 +96,6 @@ DWORD *GetSpecializedLight1Pointer();
 DWORD *GetSpecializedLight2Pointer();
 BYTE *GetFlashlightSwitchPointer();
 float *GetFlashlightBrightnessPointer();
-DWORD *GetOnScreenPointer();
 BYTE *GetEventIndexPointer();
 BYTE *GetMenuEventPointer();
 DWORD *GetTransitionStatePointer();
@@ -141,8 +155,44 @@ float *GetMeetingMariaCutsceneFogCounterOnePointer();
 float *GetMeetingMariaCutsceneFogCounterTwoPointer();
 float *GetRPTClosetCutsceneMannequinDespawnPointer();
 float *GetRPTClosetCutsceneBlurredBarsDespawnPointer();
+BYTE *GetInputAssignmentFlagPointer();
+BYTE *GetPauseMenuQuitIndexPointer();
+BYTE *GetQuitSubmenuFlagPointer();
+int32_t *GetMemoListIndexPointer();
+int32_t *GetMemoListHitboxPointer();
+int16_t *GetMemoCountIndexPointer();
+int32_t *GetMemoInventoryPointer();
+BYTE *GetMousePointerVisibleFlagPointer();
+BYTE *GetReadingMemoFlagPointer();
+DWORD *GetDrawCursorPointer();
+DWORD *GetSetShowCursorPointer();
 BYTE* GetInputAssignmentFlagPointer();
 float* GetGlobalFadeHoldValuePointer();
+float* GetFinalBossBottomWalkwaySpawnPointer();
+float* GetFinalBossBottomFloorSpawnPointer();
+float* GetFinalBossBlackBoxSpawnPointer();
+float* GetFinalBossDrawDistancePointer();
+DWORD* GetCanSaveFunctionPointer();
+float* GetPuzzleCursorHorizontalPosPointer();
+float* GetPuzzleCursorVerticalPosPointer();
+BYTE* GetPlayerIsDyingPointer();
+BYTE* GetMariaNpcIsDyingPointer();
+DWORD* GetDrawOptionsFunPointer();
+BYTE* GetSpkOptionTextOnePointer();
+BYTE* GetSpkOptionTextTwoPointer();
+int8_t* GetOptionsPagePointer();
+int32_t* GetInternalVerticalResPointer();
+DWORD* GetConfirmOptionsOnePointer();
+DWORD* GetConfirmOptionsTwoPointer();
+BYTE* GetRenderOptionsRightArrowFunPointer();
+BYTE* GetStartOfOptionSpeakerPointer();
+BYTE* GetDecrementMasterVolumePointer();
+BYTE* GetIncrementMasterVolumePointer();
+BYTE* GetOptionsRightArrowHitboxPointer();
+BYTE* GetCheckForChangedOptionsPointer();
+DWORD* GetPlaySoundFunPointer();
+BYTE* GetDiscardOptionBOPointer();
+BYTE* GetDiscardOptionPointer();
 
 // Function patch declaration
 void CheckArgumentsForPID();
@@ -178,6 +228,7 @@ void PatchControllerTweaks();
 void PatchDelayedFadeIn();
 void PatchDoubleFootstepFix();
 void PatchDrawDistance();
+void PatchFinalBossRoom();
 void PatchFlashlightClockPush();
 void PatchFlashlightFlicker();
 void PatchFMV();
@@ -189,11 +240,13 @@ void PatchFullscreenImages();
 void PatchFullscreenVideos();
 void PatchGameLoad();
 void PatchHoldDamage();
+void PatchInputTweaks();
 void PatchInventoryBGMBug();
 void PatchLockScreenPosition();
 void PatchMainMenu();
 void PatchMainMenuTitlePerLang();
 void PatchMapTranscription();
+void PatchMasterVolumeSlider();
 void PatchMemoBrightnes();
 void PatchPauseScreen();
 void PatchPistonRoom();
@@ -214,6 +267,7 @@ void PatchSpecular();
 void PatchSprayEffect();
 void PatchSFXAddr();
 void PatchSixtyFPS();
+void PatchSpeakerConfigText();
 void PatchSpecificSoundLoopFix();
 void PatchTexAddr();
 void PatchTownWestGateEvent();
@@ -228,6 +282,13 @@ bool IsJames(ModelID id);
 bool IsMariaExcludingEyes(ModelID id);
 bool IsMariaEyes(ModelID id);
 bool isConfirmationPromptOpen();
+int CountCollectedMemos();
+bool IsInFullScreenImageEvent();
+bool IsInMainOptionsMenu();
+bool IsInOptionsMenu();
+
+void HandleFinalBossRoomFix();
+void SetNewVolume();
 
 void OnFileLoadTex(LPCSTR lpFileName);
 void OnFileLoadVid(LPCSTR lpFileName);
@@ -272,13 +333,8 @@ extern DWORD *SpecializedLight1Addr;
 extern DWORD *SpecializedLight2Addr;
 extern BYTE *FlashlightSwitchAddr;
 extern float *FlashlightBrightnessAddr;
-extern DWORD *OnScreenAddr;							/* 0 = load screen
-										4 = normal in-game
-										5 = maps
-										6 = inventory screen
-										9 = save screen */
 
-extern BYTE *EventIndexAddr;							/*0 = load screen
+extern BYTE *EventIndexAddr;			/*0 = load screen
 										1 = load room
 										2 = main menu
 										4 = in-game
@@ -293,9 +349,9 @@ extern BYTE *EventIndexAddr;							/*0 = load screen
 										15 = FMVs
 										16 = PC pause menu*/
 
-extern BYTE *MenuEventAddr;							/* 7 = main menu event index */
+extern BYTE *MenuEventAddr;				/* 7 = main menu event index */
 
-extern DWORD *TransitionStateAddr;						/* 1 = fades the game image to black
+extern DWORD *TransitionStateAddr;		/* 1 = fades the game image to black
 										2 = solid black screen
 										3 = fades from black back to the in game screen */
 
@@ -336,6 +392,8 @@ extern BYTE* ControlTypeAddr;
 extern BYTE* NumKeysWeaponBindStartAddr;
 extern BYTE* TalkShowHostStateAddr;
 extern BYTE* InputAssignmentFlagAddr;
+extern float* PuzzleCursorHorizontalPosAddr;
+extern float* PuzzleCursorVerticalPosAddr;
 
 extern bool ShowDebugOverlay;
 extern bool ShowInfoOverlay;

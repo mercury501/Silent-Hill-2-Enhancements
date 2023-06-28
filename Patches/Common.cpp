@@ -32,7 +32,6 @@ BYTE *FlashlightSwitchAddr = nullptr;
 float *JamesPosXAddr = nullptr;
 float *JamesPosYAddr = nullptr;
 float *JamesPosZAddr = nullptr;
-DWORD *OnScreenAddr = nullptr;
 BYTE *EventIndexAddr = nullptr;
 BYTE *MenuEventAddr = nullptr;
 DWORD *RoomIDAddr = nullptr;
@@ -58,53 +57,93 @@ int16_t *ItemsCollectedAddr = nullptr;
 float *DamagePointsTakenAddr = nullptr;
 uint8_t *SecretItemsCollectedAddr = nullptr;
 float *BoatStageTimeAddr = nullptr;
-int32_t* MouseVerticalPositionAddr = nullptr;
-int32_t* MouseHorizontalPositionAddr = nullptr;
-DWORD* LeftAnalogXFunctionAddr = nullptr;
-DWORD* LeftAnalogYFunctionAddr = nullptr;
-DWORD* RightAnalogXFunctionAddr = nullptr;
-DWORD* RightAnalogYFunctionAddr = nullptr;
-DWORD* UpdateMousePositionFunctionAddr = nullptr;
-BYTE* SearchViewFlagAddr = nullptr;
-int32_t* EnableInputAddr = nullptr;
-BYTE* AnalogXAddr = nullptr;
-BYTE* ControlTypeAddr = nullptr;
-BYTE* RunOptionAddr = nullptr;
-BYTE* NumKeysWeaponBindStartAddr = nullptr;
+int32_t *MouseVerticalPositionAddr = nullptr;
+int32_t *MouseHorizontalPositionAddr = nullptr;
+DWORD *LeftAnalogXFunctionAddr = nullptr;
+DWORD *LeftAnalogYFunctionAddr = nullptr;
+DWORD *RightAnalogXFunctionAddr = nullptr;
+DWORD *RightAnalogYFunctionAddr = nullptr;
+DWORD *UpdateMousePositionFunctionAddr = nullptr;
+BYTE *SearchViewFlagAddr = nullptr;
+int32_t *EnableInputAddr = nullptr;
+BYTE *AnalogXAddr = nullptr;
+BYTE *ControlTypeAddr = nullptr;
+BYTE *RunOptionAddr = nullptr;
+BYTE *NumKeysWeaponBindStartAddr = nullptr;
 BYTE *TalkShowHostStateAddr = nullptr;
 BYTE *BoatFlagAddr = nullptr;
 int32_t *IsWritingQuicksaveAddr = nullptr;
 int32_t *TextAddrAddr = nullptr;
 float *WaterAnimationSpeedPointer = nullptr;
 int16_t *FlashlightOnSpeedPointer = nullptr;
-float* LowHealthIndicatorFlashSpeedPointer = nullptr;
+float *LowHealthIndicatorFlashSpeedPointer = nullptr;
 float *WaterAnimationSpeedAddr = nullptr;
 int16_t *FlashlightOnSpeedAddr = nullptr;
-float* LowHealthIndicatorFlashSpeedAddr = nullptr;
-float* StaircaseFlamesLightingSpeedAddr = nullptr;
-float* WaterLevelLoweringStepsAddr = nullptr;
-float* WaterLevelRisingStepsAddr = nullptr;
-float* BugRoomFlashlightFixAddr = nullptr;
-uint8_t* SixtyFPSFMVFixAddr = nullptr;
-uint8_t* GrabDamageAddr = nullptr;
-float* FrametimeAddr = nullptr;
-DWORD* MeatLockerFogFixOneAddr = nullptr;
-DWORD* MeatLockerFogFixTwoAddr = nullptr;
-DWORD* MeatLockerHangerFixOneAddr = nullptr;
-DWORD* MeatLockerHangerFixTwoAddr = nullptr;
-BYTE* ClearTextAddr = nullptr;
-float* MeetingMariaCutsceneFogCounterOneAddr = nullptr;
-float* MeetingMariaCutsceneFogCounterTwoAddr = nullptr;
-float* RPTClosetCutsceneMannequinDespawnAddr = nullptr;
-float* RPTClosetCutsceneBlurredBarsDespawnAddr = nullptr;
-BYTE* InputAssignmentFlagAddr = nullptr;
+float *LowHealthIndicatorFlashSpeedAddr = nullptr;
+float *StaircaseFlamesLightingSpeedAddr = nullptr;
+float *WaterLevelLoweringStepsAddr = nullptr;
+float *WaterLevelRisingStepsAddr = nullptr;
+float *BugRoomFlashlightFixAddr = nullptr;
+uint8_t *SixtyFPSFMVFixAddr = nullptr;
+uint8_t *GrabDamageAddr = nullptr;
+float *FrametimeAddr = nullptr;
+DWORD *MeatLockerFogFixOneAddr = nullptr;
+DWORD *MeatLockerFogFixTwoAddr = nullptr;
+DWORD *MeatLockerHangerFixOneAddr = nullptr;
+DWORD *MeatLockerHangerFixTwoAddr = nullptr;
+BYTE *ClearTextAddr = nullptr;
+float *MeetingMariaCutsceneFogCounterOneAddr = nullptr;
+float *MeetingMariaCutsceneFogCounterTwoAddr = nullptr;
+float *RPTClosetCutsceneMannequinDespawnAddr = nullptr;
+float *RPTClosetCutsceneBlurredBarsDespawnAddr = nullptr;
+BYTE *InputAssignmentFlagAddr = nullptr;
+BYTE *PauseMenuQuitIndexAddr = nullptr;
+int16_t *MemoCountIndexAddr = nullptr;
+BYTE *QuitSubmenuFlagAddr = nullptr;
+BYTE *MousePointerVisibleFlagAddr = nullptr;
+int32_t *MemoListIndexAddr = nullptr;
+int32_t *MemoListHitboxAddr = nullptr;
+int32_t *MemoInventoryAddr = nullptr;
+BYTE *ReadingMemoFlagAddr = nullptr;
+DWORD *SetShowCursorAddr = nullptr;
+DWORD *DrawCursorAddr = nullptr;
 float* GlobalFadeHoldValueAddr = nullptr;
+float* FinalBossBottomFloorSpawnAddr = nullptr;
+float* FinalBossBottomWalkwaySpawnAddr = nullptr;
+float* FinalBossBlackBoxSpawnAddr = nullptr;
+DWORD* CanSaveFunctionAddr = nullptr;
+float* PuzzleCursorHorizontalPosAddr = nullptr;
+float* PuzzleCursorVerticalPosAddr = nullptr;
+BYTE* PlayerIsDyingAddr = nullptr;
+BYTE* MariaNpcIsDyingAddr = nullptr;
+DWORD* DrawOptionsFunAddr = nullptr;
+BYTE* SpkOptionTextOneAddr = nullptr;
+BYTE* SpkOptionTextTwoAddr = nullptr;
+int8_t* OptionsPageAddr = nullptr;
+int8_t* OptionsSubPageAddr = nullptr;
+int32_t* InternalVerticalAddr = nullptr;
+int32_t* InternalHorizontalAddr = nullptr;
+DWORD* ConfirmOptionsOneAddr = nullptr;
+DWORD* ConfirmOptionsTwoAddr = nullptr;
+BYTE* StartOfOptionSpeakerAddr = nullptr;
+BYTE* DecrementMasterVolumeAddr = nullptr;
+BYTE* IncrementMasterVolumeAddr = nullptr;
+BYTE* OptionsRightArrowHitboxAddr = nullptr;
+BYTE* CheckForChangedOptionsAddr = nullptr;
+DWORD* PlaySoundFunAddr = nullptr;
+BYTE* DiscardOptionBOAddr = nullptr;
+BYTE* DiscardOptionAddr = nullptr;
 
 bool ShowDebugOverlay = false;
 bool ShowInfoOverlay = false;
 std::string AuxDebugOvlString = "";
 bool IsControllerConnected = false;
 HWND GameWindowHandle = NULL;
+
+bool IsInFullScreenImageEvent()
+{
+	return GetFullscreenImageEvent() == 0x02;
+}
 
 DWORD GetRoomID()
 {
@@ -503,34 +542,6 @@ float *GetFlashlightBrightnessPointer()
 	}
 
 	return FlashlightBrightnessAddr;
-}
-
-DWORD GetOnScreen()
-{
-	DWORD *pOnScreen = GetOnScreenPointer();
-
-	return (pOnScreen) ? *pOnScreen : 0;
-}
-
-DWORD *GetOnScreenPointer()
-{
-	if (OnScreenAddr)
-	{
-		return OnScreenAddr;
-	}
-
-	// Get address for on-screen address
-	constexpr BYTE OnScreenSearchBytes[]{ 0x33, 0xC0, 0x5B, 0xC3, 0x68 };
-	OnScreenAddr = (DWORD*)ReadSearchedAddresses(0x0043F205, 0x0043F3C5, 0x0043F3C5, OnScreenSearchBytes, sizeof(OnScreenSearchBytes), 0x50, __FUNCTION__);
-
-	// Checking address pointer
-	if (!OnScreenAddr)
-	{
-		Logging::Log() << __FUNCTION__ << " Error: failed to find on-screen address!";
-		return nullptr;
-	}
-
-	return OnScreenAddr;
 }
 
 BYTE GetEventIndex()
@@ -2120,6 +2131,281 @@ BYTE* GetInputAssignmentFlagPointer()
 	return InputAssignmentFlagAddr;
 }
 
+BYTE GetPauseMenuQuitIndex()
+{
+	BYTE* PauseMenuQuitIndex = GetPauseMenuQuitIndexPointer();
+
+	return (PauseMenuQuitIndex) ? *PauseMenuQuitIndex : 0;
+}
+
+BYTE* GetPauseMenuQuitIndexPointer()
+{
+	if (PauseMenuQuitIndexAddr)
+	{
+		return PauseMenuQuitIndexAddr;
+	}
+
+	constexpr BYTE PauseMenuQuitSearchBytes[]{ 0x8B, 0x44, 0x24, 0x04, 0xA3 };
+	DWORD PauseMenuQuitAddress = ReadSearchedAddresses(0x004072A0, 0x004072A0, 0x004072B0, PauseMenuQuitSearchBytes, sizeof(PauseMenuQuitSearchBytes), 0x5, __FUNCTION__);
+
+	if (!PauseMenuQuitAddress)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Pause Menu Quit Index memory address!";
+		return NULL;
+	}
+
+	PauseMenuQuitIndexAddr = (BYTE*)PauseMenuQuitAddress;
+
+	return PauseMenuQuitIndexAddr;
+
+}
+
+BYTE GetQuitSubmenuFlag()
+{
+	BYTE* pQuitSubmenuFlag = GetQuitSubmenuFlagPointer();
+
+	return (pQuitSubmenuFlag) ? *pQuitSubmenuFlag : 0;
+}
+
+BYTE* GetQuitSubmenuFlagPointer()
+{
+	if (QuitSubmenuFlagAddr)
+	{
+		return QuitSubmenuFlagAddr;
+	}
+
+	// Get address for quit submenu flag address
+	constexpr BYTE QuitSubmenuFlagSearchBytes[]{ 0x85, 0xC0, 0x75, 0xB2, 0xE8 };
+	QuitSubmenuFlagAddr = (BYTE*)ReadSearchedAddresses(0x00402402, 0x00402402, 0x00402402, QuitSubmenuFlagSearchBytes, sizeof(QuitSubmenuFlagSearchBytes), 0x1F, __FUNCTION__);
+
+	// Checking address pointer
+	if (!QuitSubmenuFlagAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find quit submenu flag address!";
+		return nullptr;
+	}
+	
+	return QuitSubmenuFlagAddr;
+}
+
+BYTE GetMousePointerVisibleFlag()
+{
+	BYTE* pMousePointerVisibleFlag = GetMousePointerVisibleFlagPointer();
+
+	return (pMousePointerVisibleFlag) ? *pMousePointerVisibleFlag : 0;
+}
+
+BYTE* GetMousePointerVisibleFlagPointer()
+{
+	if (MousePointerVisibleFlagAddr)
+	{
+		return MousePointerVisibleFlagAddr;
+	}
+
+	// Get address for mouse pointer visible flag address
+	constexpr BYTE MousePointerVisibleFlagSearchBytes[]{ 0x8B, 0x08, 0x50, 0xFF, 0x51, 0x18, 0x85, 0xC0, 0x7C, 0x33 };
+	MousePointerVisibleFlagAddr = (BYTE*)ReadSearchedAddresses(0x0045A49F, 0x0045A6FF, 0x0045A6FF, MousePointerVisibleFlagSearchBytes, sizeof(MousePointerVisibleFlagSearchBytes), 0x32, __FUNCTION__);
+
+	// Checking address pointer
+	if (!MousePointerVisibleFlagAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find mouse pointer visible flag address!";
+		return nullptr;
+	}
+	
+	return MousePointerVisibleFlagAddr;
+}
+
+int32_t GetMemoListIndex()
+{
+	int32_t* pMemoListIndex = GetMemoListIndexPointer();
+
+	return (pMemoListIndex) ? *pMemoListIndex : 0;
+}
+
+int32_t* GetMemoListIndexPointer()
+{
+	if (MemoListIndexAddr)
+	{
+		return MemoListIndexAddr;
+	}
+
+	// Get MemoListIndex address
+	constexpr BYTE MemoListIndexSearchBytes[]{ 0x83, 0xC0, 0x10, 0x4f, 0x75, 0xE0 };
+	int32_t* MemoListIndex = (int32_t*)ReadSearchedAddresses(0x00498EAA, 0x0049915A, 0x00498A1A, MemoListIndexSearchBytes, sizeof(MemoListIndexSearchBytes), 0x0A, __FUNCTION__);
+
+	// Checking address pointer
+	if (!MemoListIndex)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find MemoListIndex address!";
+		return nullptr;
+	}
+
+	MemoListIndexAddr = (int32_t*)((DWORD)MemoListIndex);
+	
+	return MemoListIndexAddr;
+}
+
+int32_t GetMemoListHitbox()
+{
+	int32_t* pMemoListHitbox = GetMemoListHitboxPointer();
+
+	return (pMemoListHitbox) ? *pMemoListHitbox : 0;
+}
+
+int32_t* GetMemoListHitboxPointer()
+{
+	if (MemoListHitboxAddr)
+	{
+		return MemoListHitboxAddr;
+	}
+
+	// Get MemoListHitbox address
+	constexpr BYTE MemoListHitboxSearchBytes[]{ 0x03, 0xd1, 0x8d, 0x74 };
+	int32_t* MemoListHitbox = (int32_t*)ReadSearchedAddresses(0x0049A32D, 0x0049A5DD, 0x00499E9D, MemoListHitboxSearchBytes, sizeof(MemoListHitboxSearchBytes), -0x0A, __FUNCTION__);
+
+	// Checking address pointer
+	if (!MemoListHitbox)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find MemoListHitbox address!";
+		return nullptr;
+	}
+
+	MemoListHitboxAddr = (int32_t*)((DWORD)MemoListHitbox);
+	
+	return MemoListHitboxAddr;
+}
+
+int32_t GetMemoInventory()
+{
+	int32_t* pMemoInventory = GetMemoInventoryPointer();
+
+	return (pMemoInventory) ? *pMemoInventory : 0;
+}
+
+int32_t* GetMemoInventoryPointer()
+{
+	if (MemoInventoryAddr)
+	{
+		return MemoInventoryAddr;
+	}
+
+	// Get MemoInventory address
+	constexpr BYTE MemoInventorySearchBytes[]{ 0x02, 0x66, 0x89, 0x4c, 0xac, 0x14, 0x66, 0x89, 0x54, 0xac, 0x16, 0x45 };
+	int32_t* MemoInventory = (int32_t*)ReadSearchedAddresses(0x0049A164, 0x0049A414, 0x00499CD4, MemoInventorySearchBytes, sizeof(MemoInventorySearchBytes), -0x14, __FUNCTION__);
+
+	// Checking address pointer
+	if (!MemoInventory)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find MemoInventory address!";
+		return nullptr;
+	}
+
+	MemoInventoryAddr = (int32_t*)((DWORD)MemoInventory);
+	
+	return MemoInventoryAddr;
+}
+
+int16_t GetMemoCountIndex()
+{
+	int16_t* pMemoCountIndex = GetMemoCountIndexPointer();
+
+	return (pMemoCountIndex) ? *pMemoCountIndex : 0;
+}
+
+int16_t* GetMemoCountIndexPointer()
+{
+	if (MemoCountIndexAddr)
+	{
+		return MemoCountIndexAddr;
+	}
+
+	// Get MemoCountIndex address
+	constexpr BYTE MemoCountIndexSearchBytes[]{ 0x02, 0x66, 0x89, 0x4c, 0xac, 0x14, 0x66, 0x89, 0x54, 0xac, 0x16, 0x45 };
+	int16_t* MemoCountIndex = (int16_t*)ReadSearchedAddresses(0x0049A164, 0x0049A414, 0x00499CD4, MemoCountIndexSearchBytes, sizeof(MemoCountIndexSearchBytes), -0x80, __FUNCTION__);
+
+	// Checking address pointer
+	if (!MemoCountIndex)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find MemoCountIndex address!";
+		return nullptr;
+	}
+
+	MemoCountIndexAddr = (int16_t*)((DWORD)MemoCountIndex);
+	
+	return MemoCountIndexAddr;
+}
+
+BYTE GetReadingMemoFlag()
+{
+	BYTE* pReadingMemoFlag = GetReadingMemoFlagPointer();
+
+	return (pReadingMemoFlag) ? *pReadingMemoFlag : 0;
+}
+
+BYTE* GetReadingMemoFlagPointer()
+{
+	if (ReadingMemoFlagAddr)
+	{
+		return ReadingMemoFlagAddr;
+	}
+
+	// Get address for reading memo flag address
+	constexpr BYTE ReadingMemoFlagSearchBytes[]{ 0x83 , 0xC4 , 0x04 , 0x85 , 0xC0 , 0x74 , 0x1C , 0x33 };
+	ReadingMemoFlagAddr = (BYTE*)ReadSearchedAddresses(0x00405A16, 0x00405A16, 0x00405A26, ReadingMemoFlagSearchBytes, sizeof(ReadingMemoFlagSearchBytes), 0x10, __FUNCTION__);
+
+	// Checking address pointer
+	if (!ReadingMemoFlagAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find reading memo flag address!";
+		return nullptr;
+	}
+	
+	return ReadingMemoFlagAddr;
+}
+
+DWORD* GetDrawCursorPointer()
+{
+	if (DrawCursorAddr)
+	{
+		return DrawCursorAddr;
+	}
+
+	// Get Draw Cursor Address
+	constexpr BYTE DrawCursorSearchBytes[]{ 0x83, 0xF8, 0x03, 0x74, 0x12, 0x83, 0xF8, 0x01 };
+	DrawCursorAddr = (DWORD*)SearchAndGetAddresses(0x00476140, 0x004763E0, 0x004765F0, DrawCursorSearchBytes, sizeof(DrawCursorSearchBytes), -0x18, __FUNCTION__);
+
+	// Checking address pointer
+	if (!DrawCursorAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Draw Cursor memory address!";
+		return nullptr;
+	}
+	
+	return DrawCursorAddr;
+}
+
+DWORD* GetSetShowCursorPointer()
+{
+	if (SetShowCursorAddr)
+	{
+		return SetShowCursorAddr;
+	}
+
+	// Get Set Show Cursor Address
+	constexpr BYTE SetShowCursorSearchBytes[]{ 0xEB, 0x66, 0x33, 0xDB, 0x53, 0x68, 0x00, 0x02, 0x00, 0x00, 0x53 };
+	SetShowCursorAddr = (DWORD*)SearchAndGetAddresses(0x00454802, 0x00454A62, 0x00454A62, SetShowCursorSearchBytes, sizeof(SetShowCursorSearchBytes), 0x84, __FUNCTION__);
+
+	// Checking address pointer
+	if (!SetShowCursorAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Set Show Cursor memory address!";
+		return nullptr;
+	}
+	
+	return SetShowCursorAddr;
+}
+
 float GetGlobalFadeHoldValue()
 {
 	float* pGlobalFadeHoldValue = GetGlobalFadeHoldValuePointer();
@@ -2139,4 +2425,567 @@ float* GetGlobalFadeHoldValuePointer()
 		(GameVersion == SH2V_DC) ? 0x0094522C : NULL);
 
 	return GlobalFadeHoldValueAddr;
+}
+
+float* GetFinalBossBottomWalkwaySpawnPointer()
+{
+	if (FinalBossBottomWalkwaySpawnAddr)
+	{
+		return FinalBossBottomWalkwaySpawnAddr;
+	}
+
+	// Get FinalBossBottomWalkwaySpawn address
+	constexpr BYTE FinalBossBottomWalkwaySpawnSearchBytes[]{ 0xDF, 0xE0, 0xF6, 0xC4, 0x05, 0x7A, 0x53, 0xD9 };
+	float* FinalBossBottomWalkwaySpawn = (float*)ReadSearchedAddresses(0x0059E98E, 0x0059F23E, 0x0059EB5E, FinalBossBottomWalkwaySpawnSearchBytes, sizeof(FinalBossBottomWalkwaySpawnSearchBytes), 0x0C, __FUNCTION__);
+
+	// Checking address pointer
+	if (!FinalBossBottomWalkwaySpawn)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find FinalBossBottomWalkwaySpawn  address!";
+		return nullptr;
+	}
+
+	FinalBossBottomWalkwaySpawnAddr = (float*)((DWORD)FinalBossBottomWalkwaySpawn);
+
+	return FinalBossBottomWalkwaySpawnAddr;
+}
+
+float* GetFinalBossBottomFloorSpawnPointer()
+{
+	if (FinalBossBottomFloorSpawnAddr)
+	{
+		return FinalBossBottomFloorSpawnAddr;
+	}
+
+	// Get FinalBossBottomFloorSpawn address
+	constexpr BYTE FinalBossBottomFloorSpawnSearchBytes[]{ 0xC7, 0x46, 0x38, 0x00, 0x00, 0xFA, 0xC3 };
+	float* FinalBossBottomFloorSpawn = (float*)ReadSearchedAddresses(0x004B852B, 0x004B87DB, 0x004B809B, FinalBossBottomFloorSpawnSearchBytes, sizeof(FinalBossBottomFloorSpawnSearchBytes), 0x0C, __FUNCTION__);
+
+	// Checking address pointer
+	if (!FinalBossBottomFloorSpawn)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find FinalBossBottomFloorSpawn  address!";
+		return nullptr;
+	}
+
+	FinalBossBottomFloorSpawnAddr = (float*)((DWORD)FinalBossBottomFloorSpawn);
+
+	return FinalBossBottomFloorSpawnAddr;
+}
+
+float* GetFinalBossBlackBoxSpawnPointer()
+{
+	if (FinalBossBlackBoxSpawnAddr)
+	{
+		return FinalBossBlackBoxSpawnAddr;
+	}
+
+	// Getfinal boss black box spawn pointer
+	constexpr BYTE FinalBoxBlackBoxSpawnSearchBytes[]{ 0xDF, 0xE0, 0xF6, 0xC4, 0x05, 0x0F, 0x8A, 0x9C, 0x01, 0x00, 0x00 };
+	void* FinalBoxBlackBoxSpawnAddress = (void*)ReadSearchedAddresses(0x004413F3, 0x004415B3, 0x004415B3, FinalBoxBlackBoxSpawnSearchBytes, sizeof(FinalBoxBlackBoxSpawnSearchBytes), 0x15, __FUNCTION__);
+
+	// Checking address pointer
+	if (!FinalBoxBlackBoxSpawnAddress)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Final boss black box cover address!";
+		return nullptr;
+	}
+
+	FinalBossBlackBoxSpawnAddr = (float*) FinalBoxBlackBoxSpawnAddress;
+
+	return FinalBossBlackBoxSpawnAddr;
+}
+
+DWORD* GetCanSaveFunctionPointer()
+{
+	if (CanSaveFunctionAddr)
+	{
+		return CanSaveFunctionAddr;
+	}
+
+	// Get Can save function Address
+	constexpr BYTE CanSaveFunctionSearchBytes[]{ 0x85, 0xC0, 0x74, 0x1D, 0xBB, 0x01, 0x00, 0x00, 0x00 };
+	CanSaveFunctionAddr = (DWORD*)SearchAndGetAddresses(0x004024B1, 0x004024B1, 0x004024B1, CanSaveFunctionSearchBytes, sizeof(CanSaveFunctionSearchBytes), -0x05, __FUNCTION__);
+	
+	// Checking address pointer
+	if (!CanSaveFunctionAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Can save function memory address!";
+		return nullptr;
+	}
+
+	return CanSaveFunctionAddr;
+}
+
+float GetPuzzleCursorHorizontalPos()
+{
+	float* pPuzzleCursorHorizontalPos = GetPuzzleCursorHorizontalPosPointer();
+
+	return (pPuzzleCursorHorizontalPos) ? *pPuzzleCursorHorizontalPos : 0.0f;
+}
+
+float* GetPuzzleCursorHorizontalPosPointer()
+{
+	if (PuzzleCursorHorizontalPosAddr)
+	{
+		return PuzzleCursorHorizontalPosAddr;
+	}
+
+	// Get Puzzle Cursor Horizontal Pos address
+	constexpr BYTE PuzzleCursorHorizontalPosSearchBytes[]{ 0x81, 0xE1, 0x60, 0x80, 0x60, 0xFF };
+	PuzzleCursorHorizontalPosAddr = (float*)ReadSearchedAddresses(0x004A2E35, 0x004A30E5, 0x004A29A5, PuzzleCursorHorizontalPosSearchBytes, sizeof(PuzzleCursorHorizontalPosSearchBytes), 0x19, __FUNCTION__);
+
+	// Checking address pointer
+	if (!PuzzleCursorHorizontalPosAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Puzzle Cursor Horizontal Pos function address!";
+		return nullptr;
+	}
+
+	return PuzzleCursorHorizontalPosAddr;
+}
+
+float GetPuzzleCursorVerticalPos()
+{
+	float* pPuzzleCursorVerticalPos = GetPuzzleCursorVerticalPosPointer();
+
+	return (pPuzzleCursorVerticalPos) ? *pPuzzleCursorVerticalPos : 0.0f;
+}
+
+float* GetPuzzleCursorVerticalPosPointer()
+{
+	if (PuzzleCursorVerticalPosAddr)
+	{
+		return PuzzleCursorVerticalPosAddr;
+	}
+
+	// Get Puzzle Cursor Vertical Pos address
+	constexpr BYTE PuzzleCursorVerticalPosSearchBytes[]{ 0x81, 0xE1, 0x60, 0x80, 0x60, 0xFF };
+	PuzzleCursorVerticalPosAddr = (float*)ReadSearchedAddresses(0x004A2E35, 0x004A30E5, 0x004A29A5, PuzzleCursorVerticalPosSearchBytes, sizeof(PuzzleCursorVerticalPosSearchBytes), 0x47, __FUNCTION__);
+
+	// Checking address pointer
+	if (!PuzzleCursorVerticalPosAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Puzzle Cursor Vertical Pos function address!";
+		return nullptr;
+	}
+
+	return PuzzleCursorVerticalPosAddr;
+}
+
+BYTE GetPlayerIsDying()
+{
+    BYTE* pPlayerIsDying = GetPlayerIsDyingPointer();
+
+    return (pPlayerIsDying) ? *pPlayerIsDying : 0;
+}
+
+BYTE* GetPlayerIsDyingPointer()
+{
+    if (PlayerIsDyingAddr)
+    {
+        return PlayerIsDyingAddr;
+    }
+
+    // Get player dying flag addresses
+    constexpr BYTE SearchBytes[]{ 0xEb, 0x03, 0xF6, 0xC4, 0x41, 0x7A, 0x07, 0xC6, 0x05 };
+    void *PlayerIsDying = (void*)ReadSearchedAddresses(0x00535948, 0x00535C78, 0x00535598, SearchBytes, sizeof(SearchBytes), 0x09, __FUNCTION__);
+    if (!PlayerIsDying)
+    {
+        Logging::Log() << __FUNCTION__ " Error: failed to find memory address!";
+        return nullptr;
+    }
+
+    PlayerIsDyingAddr = (BYTE*)((DWORD)PlayerIsDying);
+
+    return PlayerIsDyingAddr;
+}
+
+BYTE GetMariaNpcIsDying()
+{
+    BYTE* pMariaNpcIsDying = GetMariaNpcIsDyingPointer();
+
+    return (pMariaNpcIsDying) ? *pMariaNpcIsDying : 0;
+}
+
+BYTE* GetMariaNpcIsDyingPointer()
+{
+    if (MariaNpcIsDyingAddr)
+    {
+        return MariaNpcIsDyingAddr;
+    }
+
+    // Get Maria NPC dying flag address
+    constexpr BYTE SearchBytes[]{ 0x0F, 0x86, 0xDC, 0x00, 0x00, 0x00, 0xA1 };
+    void *MariaNpcIsDying = (BYTE*)ReadSearchedAddresses(0x0052D6D3, 0x0052DA03, 0x0052D323, SearchBytes, sizeof(SearchBytes), 0x1D, __FUNCTION__);
+    if (!MariaNpcIsDying)
+    {
+        Logging::Log() << __FUNCTION__ " Error: failed to find memory address!";
+        return nullptr;
+    }
+
+    MariaNpcIsDyingAddr = (BYTE*)((DWORD)MariaNpcIsDying);
+
+    return MariaNpcIsDyingAddr;
+}
+
+DWORD* GetDrawOptionsFunPointer()
+{
+	if (DrawOptionsFunAddr)
+	{
+		return DrawOptionsFunAddr;
+	}
+
+	// Get Draw Options function Address
+	constexpr BYTE DrawOptionsFunSearchBytes[]{ 0xE8, 0xBB, 0x4D, 0x00, 0x00, 0x85, 0xC0, 0xB9, 0x2C, 0x00, 0x00, 0x00 };
+	DrawOptionsFunAddr = (DWORD*)SearchAndGetAddresses(0x00476AC0, 0x00476D60, 0x00476F70, DrawOptionsFunSearchBytes, sizeof(DrawOptionsFunSearchBytes), 0x4F, __FUNCTION__);
+
+	// Checking address pointer
+	if (!DrawOptionsFunAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find Draw Options function memory address!";
+		return nullptr;
+	}
+
+	return DrawOptionsFunAddr;
+}
+
+BYTE* GetSpkOptionTextOnePointer()
+{
+	if (SpkOptionTextOneAddr)
+	{
+		return SpkOptionTextOneAddr;
+	}
+
+	// Get Spk Option Text one address
+	constexpr BYTE SearchBytes[]{ 0x83, 0xC4, 0x20, 0x84, 0xC0, 0x0F };
+	void* SpkOptionTextOne = (BYTE*)SearchAndGetAddresses(0x00461917, 0x00461B80, 0x00461B80, SearchBytes, sizeof(SearchBytes), -0x1A, __FUNCTION__);
+	if (!SpkOptionTextOne)
+	{
+		Logging::Log() << __FUNCTION__ " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	SpkOptionTextOneAddr = (BYTE*)((DWORD)SpkOptionTextOne);
+
+	return SpkOptionTextOneAddr;
+}
+
+BYTE* GetSpkOptionTextTwoPointer()
+{
+	if (SpkOptionTextTwoAddr)
+	{
+		return SpkOptionTextTwoAddr;
+	}
+
+	// Get Spk Option Text Two address
+	constexpr BYTE SearchBytes[]{ 0x83, 0xC4, 0x10, 0x68, 0x1F, 0x01 };
+	void* SpkOptionTextTwo = (BYTE*)SearchAndGetAddresses(0x00461B39, 0x00461DAB, 0x00461DAB, SearchBytes, sizeof(SearchBytes), 0x14, __FUNCTION__);
+	if (!SpkOptionTextTwo)
+	{
+		Logging::Log() << __FUNCTION__ " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	SpkOptionTextTwoAddr = (BYTE*)((DWORD)SpkOptionTextTwo);
+
+	return SpkOptionTextTwoAddr;
+}
+
+int8_t GetOptionsPage()
+{
+	int8_t* pOptionsPage = GetOptionsPagePointer();
+
+	return (pOptionsPage) ? *pOptionsPage : 0;
+}
+
+int8_t* GetOptionsPagePointer()
+{
+	if (OptionsPageAddr)
+	{
+		return OptionsPageAddr;
+	}
+
+	// Get OptionsPage address
+	constexpr BYTE OptionsPageSearchBytes[]{ 0x83, 0xC4, 0x04, 0x85, 0xC0, 0x75, 0x13, 0x56, 0x68, 0x02, 0x00, 0x00, 0x08 };
+	int8_t* OptionsPage = (int8_t*)ReadSearchedAddresses(0x004671e1, 0x00467481, 0x00467691, OptionsPageSearchBytes, sizeof(OptionsPageSearchBytes), -0x18, __FUNCTION__);
+
+	// Checking address pointer
+	if (!OptionsPage)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find OptionsPage address!";
+		return nullptr;
+	}
+
+	OptionsPageAddr = (int8_t*)((DWORD)OptionsPage);
+
+	return OptionsPageAddr;
+}
+
+int8_t GetOptionsSubPage()
+{
+	int8_t* pOptionsSubPage = GetOptionsPagePointer() + 0x01;
+
+	return (pOptionsSubPage) ? *pOptionsSubPage : 0;
+}
+
+int16_t GetSelectedOption()
+{
+	int8_t* pSelectedOption = GetOptionsPagePointer() + 0x02;
+
+	return (pSelectedOption) ? *pSelectedOption : 0;
+}
+
+int32_t GetInternalVerticalRes()
+{
+	int32_t* pInternalVertical = GetInternalVerticalResPointer();
+
+	return (pInternalVertical) ? *pInternalVertical : 0;
+}
+
+int32_t* GetInternalVerticalResPointer()
+{
+	if (InternalVerticalAddr)
+	{
+		return InternalVerticalAddr;
+	}
+
+	// Get InternalVertical address
+	constexpr BYTE InternalVerticalSearchBytes[]{ 0x89, 0x44, 0x24, 0x14, 0x89, 0x44, 0x24, 0x28, 0x89 };
+	int32_t* InternalVertical = (int32_t*)ReadSearchedAddresses(0x00406EF6, 0x00406EF6, 0x00406F06, InternalVerticalSearchBytes, sizeof(InternalVerticalSearchBytes), -0x0B, __FUNCTION__);
+
+	// Checking address pointer
+	if (!InternalVertical)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find InternalVertical address!";
+		return nullptr;
+	}
+
+	InternalVerticalAddr = (int32_t*)((DWORD)InternalVertical);
+
+	return InternalVerticalAddr;
+}
+
+int32_t GetInternalHorizontalRes()
+{
+	int32_t* pInternalHorizontal = GetInternalVerticalResPointer() - 0x01;
+
+	return (pInternalHorizontal) ? *pInternalHorizontal : 0;
+}
+
+DWORD* GetConfirmOptionsOnePointer()
+{
+	if (ConfirmOptionsOneAddr)
+	{
+		return ConfirmOptionsOneAddr;
+	}
+
+	// Get Draw Options function Address
+	constexpr BYTE ConfirmOptionsOneSearchBytes[]{ 0x8D, 0x48, 0xFD, 0x83 };
+	ConfirmOptionsOneAddr = (DWORD*)SearchAndGetAddresses(0x004638D9, 0x00463B49, 0x00463B67, ConfirmOptionsOneSearchBytes, sizeof(ConfirmOptionsOneSearchBytes), -0x3C, __FUNCTION__);
+
+	// Checking address pointer
+	if (!ConfirmOptionsOneAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return ConfirmOptionsOneAddr;
+}
+
+DWORD* GetConfirmOptionsTwoPointer()
+{
+	if (ConfirmOptionsTwoAddr)
+	{
+		return ConfirmOptionsTwoAddr;
+	}
+
+	// Get Draw Options function Address
+	constexpr BYTE ConfirmOptionsTwoSearchBytes[]{ 0x6F, 0xFF, 0xFF, 0x83, 0xC4, 0x04, 0x85, 0xC0, 0x74 };
+	ConfirmOptionsTwoAddr = (DWORD*)SearchAndGetAddresses(0x00463410, 0x00463680, 0x0046368D, ConfirmOptionsTwoSearchBytes, sizeof(ConfirmOptionsTwoSearchBytes), -0x34, __FUNCTION__);
+
+	// Checking address pointer
+	if (!ConfirmOptionsTwoAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return ConfirmOptionsTwoAddr;
+}
+
+BYTE* GetStartOfOptionSpeakerPointer()
+{
+	if (StartOfOptionSpeakerAddr)
+	{
+		return StartOfOptionSpeakerAddr;
+	}
+
+	// Get Draw Options function Address
+	constexpr BYTE StartOfOptionSpeakerSearchBytes[]{ 0x83, 0xC4, 0x08, 0x83, 0xF8, 0x07, 0x77 };
+	StartOfOptionSpeakerAddr = (BYTE*)SearchAndGetAddresses(0x00463D3A, 0x00463FB3, 0x00464193, StartOfOptionSpeakerSearchBytes, sizeof(StartOfOptionSpeakerSearchBytes), 0x00, __FUNCTION__);
+
+	// Checking address pointer
+	if (!StartOfOptionSpeakerAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return StartOfOptionSpeakerAddr;
+}
+
+BYTE* GetRenderOptionsRightArrowFunPointer()
+{
+	BYTE* pConfirmOptionsTwo = GetStartOfOptionSpeakerPointer() + 0x9A;
+
+	return (pConfirmOptionsTwo) ? pConfirmOptionsTwo : 0;
+}
+
+BYTE* GetDecrementMasterVolumePointer()
+{
+	if (DecrementMasterVolumeAddr)
+	{
+		return DecrementMasterVolumeAddr;
+	}
+
+	// Get decrement master volume Address
+	constexpr BYTE DecrementMasterVolumeSearchBytes[]{ 0x68, 0x00, 0x00, 0x80, 0x3F, 0x68, 0x10, 0x27, 0x00, 0x00, 0xE9 };
+	DecrementMasterVolumeAddr = (BYTE*)SearchAndGetAddresses(0x00463EC7, 0x00464140, 0x0046432F, DecrementMasterVolumeSearchBytes, sizeof(DecrementMasterVolumeSearchBytes), -0x6D, __FUNCTION__);
+
+	// Checking address pointer
+	if (!DecrementMasterVolumeAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return DecrementMasterVolumeAddr;
+}
+
+BYTE* GetIncrementMasterVolumePointer()
+{
+	if (IncrementMasterVolumeAddr)
+	{
+		return IncrementMasterVolumeAddr;
+	}
+
+	// Get increment master volume Address
+	constexpr BYTE IncrementMasterVolumeSearchBytes[]{ 0x68, 0x00, 0x00, 0x80, 0x3F, 0x68, 0x10, 0x27, 0x00, 0x00, 0xE9 };
+	IncrementMasterVolumeAddr = (BYTE*)SearchAndGetAddresses(0x00463EC7, 0x00464140, 0x0046432F, IncrementMasterVolumeSearchBytes, sizeof(IncrementMasterVolumeSearchBytes), -0x87, __FUNCTION__);
+
+	// Checking address pointer
+	if (!IncrementMasterVolumeAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return IncrementMasterVolumeAddr;
+}
+
+BYTE* GetOptionsRightArrowHitboxPointer()
+{
+	if (OptionsRightArrowHitboxAddr)
+	{
+		return OptionsRightArrowHitboxAddr;
+	}
+
+	// Get options right arrow hitbox Address
+	constexpr BYTE OptionsRightArrowHitboxSearchBytes[]{ 0x94, 0x00, 0x05, 0x09, 0x01, 0x00, 0x00, 0x33 };
+	OptionsRightArrowHitboxAddr = (BYTE*)SearchAndGetAddresses(0x00462E64, 0x004630D4, 0x004630D4, OptionsRightArrowHitboxSearchBytes, sizeof(OptionsRightArrowHitboxSearchBytes), -0x03, __FUNCTION__);
+
+	// Checking address pointer
+	if (!OptionsRightArrowHitboxAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return OptionsRightArrowHitboxAddr;
+}
+
+BYTE* GetCheckForChangedOptionsPointer()
+{
+	if (CheckForChangedOptionsAddr)
+	{
+		return CheckForChangedOptionsAddr;
+	}
+
+	// Get check for changed options Address
+	constexpr BYTE CheckForChangedOptionsSearchBytes[]{ 0xFE, 0xFF, 0x83, 0xC4, 0x0C, 0x85, 0xC0, 0x74, 0x1F, 0xA0, 0x1D };
+	CheckForChangedOptionsAddr = (BYTE*)SearchAndGetAddresses(0x004631C6, 0x00463436, 0x00463441, CheckForChangedOptionsSearchBytes, sizeof(CheckForChangedOptionsSearchBytes), 0x4B, __FUNCTION__);
+
+	// Checking address pointer
+	if (!CheckForChangedOptionsAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return CheckForChangedOptionsAddr;
+}
+
+DWORD* GetPlaySoundFunPointer()
+{
+	if (PlaySoundFunAddr)
+	{
+		return PlaySoundFunAddr;
+	}
+
+	// Get Play sound function Address
+	constexpr BYTE PlaySoundFunSearchBytes[]{ 0x0B, 0x00, 0x83, 0xC4, 0x0C, 0x80, 0x3D };
+	PlaySoundFunAddr = (DWORD*)SearchAndGetAddresses(0x00464089, 0x00464302, 0x4644FD, PlaySoundFunSearchBytes, sizeof(PlaySoundFunSearchBytes), -0x03, __FUNCTION__);
+
+	// Checking address pointer
+	if (!PlaySoundFunAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return PlaySoundFunAddr;
+}
+
+BYTE* GetDiscardOptionBOPointer()
+{
+	if (DiscardOptionBOAddr)
+	{
+		return DiscardOptionBOAddr;
+	}
+
+	// Get decrement master volume Address
+	constexpr BYTE DiscardOptionBOSearchBytes[]{ 0x6E, 0xFF, 0xFF, 0x3D, 0xFA, 0x00, 0x00, 0x00, 0x0F, 0x8D };
+	DiscardOptionBOAddr = (BYTE*)SearchAndGetAddresses(0x00463523, 0x00463793, 0x4637A8, DiscardOptionBOSearchBytes, sizeof(DiscardOptionBOSearchBytes), 0x4C, __FUNCTION__);
+
+	// Checking address pointer
+	if (!DiscardOptionBOAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return DiscardOptionBOAddr;
+}
+
+BYTE* GetDiscardOptionPointer()
+{
+	if (DiscardOptionAddr)
+	{
+		return DiscardOptionAddr;
+	}
+
+	// Get decrement master volume Address
+	constexpr BYTE DiscardOptionSearchBytes[]{ 0xFE, 0xFF, 0x83, 0xC4, 0x04, 0x85, 0xC0, 0x75, 0x27 };
+	DiscardOptionAddr = (BYTE*)SearchAndGetAddresses(0x004636C8, 0x00463938, 0x00463952, DiscardOptionSearchBytes, sizeof(DiscardOptionSearchBytes), 0x76, __FUNCTION__);
+
+	// Checking address pointer
+	if (!DiscardOptionAddr)
+	{
+		Logging::Log() << __FUNCTION__ << " Error: failed to find memory address!";
+		return nullptr;
+	}
+
+	return DiscardOptionAddr;
 }

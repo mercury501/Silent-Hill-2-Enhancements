@@ -24,6 +24,7 @@
 #include "stb_image_write.h"
 #include "stb_image_resize.h"
 #include "Patches/ModelID.h"
+#include "Patches\MasterVolume.h"
 
 bool DeviceLost = false;
 bool DisableShaderOnPresent = false;
@@ -968,14 +969,22 @@ HRESULT m_IDirect3DDevice8::Present(CONST RECT *pSourceRect, CONST RECT *pDestRe
 {
 	Logging::LogDebug() << __FUNCTION__;
 
+	// Draw Overlays
+	OverlayRef.DrawOverlays(ProxyInterface);
+
+	// Store reference to the ProxyInterface
+	MasterVolumeRef.HandleMasterVolume(ProxyInterface);
+
 	// Skip frames in specific cutscenes to prevent flickering
 	if (SkipSceneFlag)
 	{
 		return D3D_OK;
 	}
 
-	// Draw Overlays
-	OverlayRef.DrawOverlays(ProxyInterface);
+	if (EnableEnhancedMouse)
+	{
+		OverlayRef.RenderMouseCursor();
+	}
 
 	// Endscene
 	isInScene = false;
@@ -1060,7 +1069,7 @@ HRESULT m_IDirect3DDevice8::Present(CONST RECT *pSourceRect, CONST RECT *pDestRe
 	// Fix inventory snapshot in Hotel Employee Elevator Room
 	if (HotelEmployeeElevatorRoomFlag)
 	{
-		if (pInitialRenderTexture && GetOnScreen() == 6)
+		if (pInitialRenderTexture && GetEventIndex() == 6)
 		{
 			if (!isInScene)
 			{
@@ -1378,7 +1387,7 @@ HRESULT m_IDirect3DDevice8::DrawPrimitiveUP(D3DPRIMITIVETYPE PrimitiveType, UINT
 	}
 
 	// Remove red cross in inventory snapshot in Hotel Employee Elevator Room
-	if (DisableRedCrossInCutScenes && HotelEmployeeElevatorRoomFlag && GetOnScreen() == 6 && PrimitiveType == D3DPT_TRIANGLESTRIP && PrimitiveCount == 2 && VertexStreamZeroStride == 24 &&
+	if (DisableRedCrossInCutScenes && HotelEmployeeElevatorRoomFlag && GetEventIndex() == 6 && PrimitiveType == D3DPT_TRIANGLESTRIP && PrimitiveCount == 2 && VertexStreamZeroStride == 24 &&
 		((CUSTOMVERTEX_DIF_TEX1*)pVertexStreamZeroData)[0].z == 0.01f && ((CUSTOMVERTEX_DIF_TEX1*)pVertexStreamZeroData)[0].rhw == 1.0f)
 	{
 		return D3D_OK;
@@ -1416,7 +1425,7 @@ HRESULT m_IDirect3DDevice8::DrawPrimitiveUP(D3DPRIMITIVETYPE PrimitiveType, UINT
 			PillarBoxBottom = ((CUSTOMVERTEX_DIF_TEX1*)pVertexStreamZeroData)[2].y;
 		}
 		// Clip artifacts that protrude into pillarbox
-		else if (PillarBoxLeft && PillarBoxRight && GetRoomID() && !GetCutsceneID() && (GetOnScreen() == 4 || GetOnScreen() == 5))
+		else if (PillarBoxLeft && PillarBoxRight && GetRoomID() && !GetCutsceneID() && (GetEventIndex() == 4 || GetEventIndex() == 5))
 		{
 			// Clip green player marker
 			if (pVertexStreamZeroData && ((((CUSTOMVERTEX_DIF_TEX1*)pVertexStreamZeroData)[1].x != ((CUSTOMVERTEX_DIF_TEX1*)pVertexStreamZeroData)[2].x ||
@@ -1909,6 +1918,11 @@ HRESULT m_IDirect3DDevice8::BeginScene()
 		else if (IsInFakeFadeout && GetCutsceneID() != 0x19)
 		{
 			IsInFakeFadeout = false;
+		}
+
+		if (FixFinalBossRoom)
+		{
+			HandleFinalBossRoomFix();
 		}
 	}
 
@@ -2540,7 +2554,7 @@ HRESULT m_IDirect3DDevice8::GetFrontBuffer(THIS_ IDirect3DSurface8* pDestSurface
 	IsGetFrontBufferCalled = true;
 
 	// Fix inventory snapshot in Hotel Employee Elevator Room
-	if (PauseScreenFix && GetRoomID() == 0x9D && GetOnScreen() == 0x04)
+	if (PauseScreenFix && GetRoomID() == 0x9D && GetEventIndex() == 0x04)
 	{
 		HotelEmployeeElevatorRoomFlag = TRUE;
 	}

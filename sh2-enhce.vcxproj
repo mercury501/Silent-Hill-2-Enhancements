@@ -59,12 +59,14 @@
     <ClCompile Include="Patches\CommandWindowMouseFix.cpp" />
     <ClCompile Include="Patches\DoubleFootstepFix.cpp" />
     <ClCompile Include="Patches\FMVPlayer.cpp" />
+    <ClCompile Include="Patches\FinalBossRoomFix.cpp" />
     <ClCompile Include="Patches\InputTweaks.cpp" />
     <ClCompile Include="Patches\FMVPatches.cpp" />
     <ClCompile Include="Patches\HoldDamage.cpp" />
     <ClCompile Include="Patches\MapTranscription.cpp" />
     <ClCompile Include="Patches\DelayedFadeIn.cpp" />
     <ClCompile Include="Patches\FmvSubtitles.cpp" />
+    <ClCompile Include="Patches\MasterVolume.cpp" />
     <ClCompile Include="Patches\PatchCriware.cpp" />
     <ClCompile Include="Patches\QuickSaveTweaks.cpp" />
     <ClCompile Include="Patches\PrisonerTimer.cpp" />
@@ -189,6 +191,7 @@
     <ClInclude Include="Logging\Logging.h" />
     <ClInclude Include="Patches\FullscreenImages.h" />
     <ClInclude Include="Patches\InputTweaks.h" />
+    <ClInclude Include="Patches\MasterVolume.h" />
     <ClInclude Include="Patches\ModelID.h" />
     <ClInclude Include="Patches\Patches.h" />
     <ClInclude Include="Patches\SfxPatch.h" />
@@ -233,11 +236,18 @@
     <ProjectGuid>{E204DCB3-D122-4F2E-88A8-89AC22CE3274}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>sh2-enhce</ProjectName>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -254,12 +264,14 @@
     <IntDir>$(SolutionDir)bin\Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>d3d8</TargetName>
     <LibraryPath>$(ProjectDir)Wrappers\d3d8\DirectX81SDK;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>d3d8</TargetName>
     <LibraryPath>$(ProjectDir)Wrappers\d3d8\DirectX81SDK;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -268,9 +280,9 @@
       <PreprocessorDefinitions>_WINDLL;WIN32;_DEBUG;_WINDOWS;PSAPI_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(SolutionDir)bin\Intermediate\$(ProjectName)\$(Configuration)\Object\%(RelativeDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>Wrappers\wrapper.def</ModuleDefinitionFile>
@@ -278,6 +290,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);$(WindowsSDK80Path)Lib\winv6.3\um\x86;$(ProjectDir)Wrappers\d3d8\DirectX81SDK\include;$(ProjectDir)Include\FMVPlayer\ffmpeg\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>Psapi.lib;Shlwapi.lib;WinInet.lib;libci.lib;legacy_stdio_definitions.lib;d3dx8.lib;d3d8.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
@@ -292,16 +306,17 @@
       <ObjectFileName>$(SolutionDir)bin\Intermediate\$(ProjectName)\$(Configuration)\Object\%(RelativeDir)</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>Wrappers\wrapper.def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)Include\FMVPlayer\ffmpeg\lib;$(SolutionDir)bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories);$(WindowsSDK80Path)Lib\winv6.3\um\x86;$(ProjectDir)Wrappers\d3d8\DirectX81SDK\include</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>Psapi.lib;Shlwapi.lib;WinInet.lib;libci.lib;legacy_stdio_definitions.lib;d3dx8.lib;d3d8.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
     <PreBuildEvent>
       <Command>cmd /q /c "cd /D ""$(ProjectDir)"" &amp;&amp; if not exist Resources\BuildNo.rc echo #define BUILD_NUMBER 0 &gt;Resources\BuildNo.rc"

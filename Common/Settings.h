@@ -5,6 +5,7 @@
 #define VISIT_BOOL_SETTINGS(visit) \
 	visit(AdjustColorTemp, true) \
 	visit(AudioClipDetection, true) \
+	visit(AutoHideMouseCursor, false) \
 	visit(AutoUpdateModule, true) \
 	visit(CatacombsMeatRoomFix, true) \
 	visit(ChangeClosetSpawn, true) \
@@ -28,6 +29,7 @@
 	visit(EnableDebugOverlay, true) \
 	visit(EnableEnhancedMouse, true) \
 	visit(EnableInfoOverlay, true) \
+	visit(EnableMasterVolume, true) \
 	visit(EnableMenuTest, false) \
 	visit(EnableMenuTestIGT, true) \
 	visit(EnableMouseWheelSwap, true) \
@@ -37,6 +39,7 @@
 	visit(EnableSoftShadows, true) \
 	visit(EnableTexAddrHack, true) \
 	visit(EnableToggleSprint, true) \
+	visit(EnhanceMouseCursor, true) \
 	visit(FastTransitions, true) \
 	visit(Fix2D, true) \
 	visit(FixAdvancedOptions, true) \
@@ -44,6 +47,7 @@
 	visit(FixChainsawSpawn, true) \
 	visit(FixCreatureVehicleSpawn, true) \
 	visit(FixDrawingTextLine, true) \
+	visit(FixFinalBossRoom, true) \
 	visit(FixFMVResetIssue, true) \
 	visit(FixFMVSpeed, true) \
 	visit(FixGPUAntiAliasing, true) \
@@ -284,7 +288,15 @@ VISIT_STR_SETTINGS(DECLARE_STR_SETTINGS);
 
 typedef void(__stdcall* NV)(char* name, char* value, void* lpParam);
 
+struct CFGDATA
+{
+	DWORD Width = 0;
+	DWORD Height = 0;
+	DWORD VolumeLevel = 15;
+};
+
 extern HMODULE m_hModule;
+extern CFGDATA ConfigData;
 extern bool CustomExeStrSet;
 extern bool EnableCustomShaders;
 extern bool ShadersReady;

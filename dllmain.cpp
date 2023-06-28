@@ -145,6 +145,9 @@ void DelayedStart()
 	GetSH2FolderPath(sh2path, MAX_PATH);
 	Logging::Log() << "Running from: " << sh2path;
 
+	// Get config data settings
+	GetConfigData();
+
 	// Log settings in ini file
 	if (IsLoadConfig)
 	{
@@ -592,6 +595,25 @@ void DelayedStart()
     {
         PatchCommandWindowMouseFix();
     }
+
+	// Patch to fix the final boss room culling error
+	if (FixFinalBossRoom)
+	{
+		PatchFinalBossRoom();
+	}
+
+	// Hook input handling
+	if (EnableInputTweaks)
+	{
+		PatchInputTweaks();
+	}
+
+	// Patch master volume slider and strings
+	if (EnableMasterVolume && CustomExeStrSet)
+	{
+		PatchSpeakerConfigText();
+		PatchMasterVolumeSlider();
+	}
 
 	// Remove the "Now loading..." message
 	switch (GameVersion)
