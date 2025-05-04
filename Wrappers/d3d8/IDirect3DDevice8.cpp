@@ -2735,10 +2735,7 @@ HRESULT m_IDirect3DDevice8::BeginScene()
 		}
 
 		// Run great knife fixes for boat speed, cutscenes
-		if (RowboatAnimationFix || true)
-		{
-			RunGreatKnifeFixes();
-		}
+		RunGreatKnifeFixes();
 
 		NeedToGrabScreenForWater = true;
 		RoachesDrawingCounter = 0;

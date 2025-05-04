@@ -77,9 +77,9 @@ void RunGreatKnifeFixes()
 	DWORD CutsceneId = GetCutsceneID();
 	DWORD RoomId = GetRoomID();
 
-	bool BoatStageCondition = (GetBoatFlag() == 0x01 && RoomId == R_TOWN_LAKE) && RowboatAnimationFix;
-	bool CutsceneCondition = (CutsceneId != CS_NONE) && true; //TODO
-	bool AngelaScreamCondition = (RoomId == R_LAB_TOP_G && InGameVoiceEventAddr != 0x00) && true; //TODO
+	bool BoatStageCondition = RowboatAnimationFix && (GetBoatFlag() == 0x01 && RoomId == R_TOWN_LAKE);
+	bool CutsceneCondition = (CutsceneId != CS_NONE);
+	bool AngelaScreamCondition = (RoomId == R_LAB_TOP_G && InGameVoiceEventAddr != 0x00);
 
 	bool InhibitGreatKnifeFlag = BoatStageCondition || CutsceneCondition || AngelaScreamCondition;
 
