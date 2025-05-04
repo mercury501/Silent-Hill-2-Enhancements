@@ -449,7 +449,7 @@
     <ClCompile Include="Patches\FlashlightReflection.cpp">
       <Filter>Patches</Filter>
     </ClCompile>
-    <ClCompile Include="Patches\RowboatFix.cpp">
+    <ClCompile Include="Patches\GreatKnifeFixes.cpp">
       <Filter>Patches</Filter>
     </ClCompile>
     <ClCompile Include="Patches\CustomAdvancedOptions.cpp">

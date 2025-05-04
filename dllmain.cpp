@@ -780,12 +780,6 @@ void DelayedStart()
 		PatchLowHealthIndicator();
 	}
 
-	// Patch boat speed with great knife equipped, and disable weapon hotkeys
-	if (RowboatAnimationFix)
-	{
-		PatchGreatKnifeBoatSpeed();
-	}
-
 	// Fix flashlight position during the hospital shower room cutscene
 	if (ShowerRoomFlashlightFix)
 	{
